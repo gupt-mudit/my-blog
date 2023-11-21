@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyBlog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="d-flex flex-column">
+    <%= render "layouts/header" %>
+  
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    
+   <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+      <div class="container text-center text-white">
+      <small>Copyright &copy; Mudit Gupta</small>
+    </div>
+    </footer>
+  </body>
+</html>

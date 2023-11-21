@@ -1,0 +1,45 @@
+<div class="article-index">
+<h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
+
+<%= gravatar_for @user, size: 200 %>
+<div class="text-center mt-4">
+  <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-dark" %>
+</div>
+<h1 class="mt-3 text-center">Articles</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, list_classes: %w(pagination justify-content-center) %>
+</div>
+<div id="articles">
+  <% @articles.each do |article| %>
+  <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded card-glass">
+          <div class="card-header font-italic">
+             by <%= article.user.username if article.user %>
+             
+          </div>
+          <div class="card-body card-glass-inner">
+            <h5 class="card-title"><%= link_to article.tittle, article_path(article), class: "text-success" %></h5>
+            <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+            <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+            <% if logged_in? && (@user == current_user || current_user.admin?) %>
+            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", article_path(article), class: "btn btn-outline-danger", data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(article.created_at) %> ago, 
+            edited <%= time_ago_in_words(article.updated_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, list_classes: %w(pagination justify-content-center) %>
+</div>
+</div>

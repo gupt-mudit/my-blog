@@ -1,0 +1,18 @@
+<div class="show-index">
+<p style="color: green"><%= notice %></p>
+
+<%= render @article %>
+
+<div class="text-center">
+  <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+  <%= link_to "Edit this article", edit_article_path(@article),class: "text-white btn btn-primary  index-btn" %> 
+  <%= link_to "Back to articles", articles_path ,class: "text-white btn btn-primary  index-btn"%>
+  <% end %>
+  <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+  <%= link_to "Destroy this article", @article,data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  },class: "text-white btn btn-primary  index-btn" %>
+  <% end %>
+</div>
+</div>
