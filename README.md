@@ -22,4 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-made by mudit gupta
+made by mudit gupta!
